@@ -15,6 +15,18 @@ class DynamicArrayTest {
     }
 
     @Test
+    void createWithArrayDynamicArray_sizeAndCapacityAreSetCorrectly() {
+        DynamicArray<Integer> dynamicArray1 = new DynamicArray<>(new Integer[]{1, 5, 10, 15});
+        assertEquals(4, dynamicArray1.size());
+        assertEquals(10, dynamicArray1.capacity());
+        assertEquals(5, dynamicArray1.get(1));
+        DynamicArray<Integer> dynamicArray2 = new DynamicArray<>(new Integer[]{1, 5, 10, 15, 1, 1, 1, 1, 1, 1, 1});
+        assertEquals(11, dynamicArray2.size());
+        assertEquals(20, dynamicArray2.capacity());
+        assertEquals(5, dynamicArray2.get(1));
+    }
+
+    @Test
     void add_valueIsAdded() {
         DynamicArray<Integer> dynamicArray = new DynamicArray<>();
         dynamicArray.add(5);
