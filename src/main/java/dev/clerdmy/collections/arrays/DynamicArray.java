@@ -1,11 +1,12 @@
 package dev.clerdmy.collections.arrays;
 
+import dev.clerdmy.collections.Array;
 import dev.clerdmy.util.Constants;
 
 import java.util.*;
 import java.util.function.Consumer;
 
-public class DynamicArray<T> implements Iterable<T> {
+public class DynamicArray<T> implements Array<T> {
 
     private T[] data;
     private int size;
@@ -20,6 +21,13 @@ public class DynamicArray<T> implements Iterable<T> {
         this.data = (T[]) new Object[capacity];
         this.size = 0;
         this.capacity = capacity;
+    }
+
+    public DynamicArray(T[] array) {
+        this.data = array;
+        this.size = array.length;
+        this.capacity = Constants.DEFAULT_CAPACITY;
+        checkCapacity(size);
     }
 
     public int size() {
@@ -41,19 +49,21 @@ public class DynamicArray<T> implements Iterable<T> {
         return data[index];
     }
 
-    public void add(T value) {
+    public boolean add(T value) {
         checkCapacity(size + 1);
         data[size++] = value;
+        return true;
     }
 
-    public void set(int index, T value) {
+    public boolean set(int index, T value) {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException();
         }
         data[index] = value;
+        return true;
     }
 
-    public void insert(int index, T value) {
+    public boolean insert(int index, T value) {
         if (index < 0 || index > size) {
             throw new IndexOutOfBoundsException();
         }
@@ -61,6 +71,7 @@ public class DynamicArray<T> implements Iterable<T> {
         shiftElementsToRight(index);
         data[index] = value;
         size++;
+        return true;
     }
 
     public T remove(int index) {
