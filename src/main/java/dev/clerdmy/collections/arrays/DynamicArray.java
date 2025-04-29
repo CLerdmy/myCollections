@@ -64,7 +64,7 @@ public class DynamicArray<T> implements Array<T> {
     }
 
     public boolean insert(int index, T value) {
-        if (index < 0 || index > size) {
+        if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException();
         }
         checkCapacity(size + 1);
