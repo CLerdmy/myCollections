@@ -14,7 +14,16 @@ public class CollectionsUtil {
         }
     }
 
-    public static <T> int binarySearchRecursion(T key, Array<T> array, Comparator<T> comparator) {
+    public static <T> int binarySearch(T key, Array<T> array, Comparator<T> comparator) {
+        return binarySearchIterative(key, array, comparator);
+    }
+
+    public static <T> int binarySearch(T key, Array<T> array, Comparator<T> comparator, boolean isRecursive) {
+        if (isRecursive) return binarySearchRecursion(key, array, comparator);
+        return binarySearchIterative(key, array, comparator);
+    }
+
+    private static <T> int binarySearchRecursion(T key, Array<T> array, Comparator<T> comparator) {
         return binarySearchRecursionHelper(comparator, key, array, 0, array.size() - 1);
     }
 
@@ -27,7 +36,7 @@ public class CollectionsUtil {
         return binarySearchRecursionHelper(comparator, key, array, low, mid - 1);
     }
 
-    public static <T> int binarySearch(T key, Array<T> array, Comparator<T> comparator) {
+    private static <T> int binarySearchIterative(T key, Array<T> array, Comparator<T> comparator) {
         int low = 0;
         int high = array.size() - 1;
         while (low <= high) {
@@ -44,7 +53,16 @@ public class CollectionsUtil {
         return -1;
     }
 
-    public static <T> int lowerBoundRecursion(T key, Array<T> array, Comparator<T> comparator) {
+    public static <T> int lowerBound(T key, Array<T> array, Comparator<T> comparator) {
+        return lowerBoundIterative(key, array, comparator);
+    }
+
+    public static <T> int lowerBound(T key, Array<T> array, Comparator<T> comparator, boolean isRecursive) {
+        if (isRecursive) return lowerBoundRecursion(key, array, comparator);
+        return lowerBoundIterative(key, array, comparator);
+    }
+
+    private static <T> int lowerBoundRecursion(T key, Array<T> array, Comparator<T> comparator) {
         return lowerBoundRecursionHelper(comparator, key, array, 0, array.size() - 1);
     }
 
@@ -56,7 +74,7 @@ public class CollectionsUtil {
         return Math.min(mid, lowerBoundRecursionHelper(comparator, key, array, low, mid - 1));
     }
 
-    public static <T> int lowerBound(T key, Array<T> array, Comparator<T> comparator) {
+    private static <T> int lowerBoundIterative(T key, Array<T> array, Comparator<T> comparator) {
         int low = 0;
         int high = array.size() - 1;
         int result = -1;
@@ -73,7 +91,16 @@ public class CollectionsUtil {
         return result;
     }
 
-    public static <T> int upperBoundRecursion(T key, Array<T> array, Comparator<T> comparator) {
+    public static <T> int upperBound(T key, Array<T> array, Comparator<T> comparator) {
+        return upperBoundIterative(key, array, comparator);
+    }
+
+    public static <T> int upperBound(T key, Array<T> array, Comparator<T> comparator, boolean isRecursive) {
+        if (isRecursive) return upperBoundRecursion(key, array, comparator);
+        return upperBoundIterative(key, array, comparator);
+    }
+
+    private static <T> int upperBoundRecursion(T key, Array<T> array, Comparator<T> comparator) {
         return upperBoundRecursionHelper(comparator, key, array, 0, array.size() - 1);
     }
 
@@ -85,7 +112,7 @@ public class CollectionsUtil {
         return Math.min(mid, upperBoundRecursionHelper(comparator, key, array, low, mid - 1));
     }
 
-    public static <T> int upperBound(T key, Array<T> array, Comparator<T> comparator) {
+    private static <T> int upperBoundIterative(T key, Array<T> array, Comparator<T> comparator) {
         int low = 0;
         int high = array.size() - 1;
         int result = -1;
