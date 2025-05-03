@@ -93,6 +93,7 @@ public class DynamicArray<T> implements Array<T> {
         return value;
     }
 
+    @Override
     public void clear() {
         for (int i = 0; i < size; i++) {
             data[i] = null;

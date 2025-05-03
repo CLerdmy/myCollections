@@ -8,5 +8,6 @@ public interface Array<T> extends Collection<T> {
     boolean insert(int index, T item);
     T remove(int index);
     T pop();
+    void clear();
 
 }

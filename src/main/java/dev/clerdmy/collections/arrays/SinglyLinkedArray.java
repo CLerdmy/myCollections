@@ -165,6 +165,7 @@ public class SinglyLinkedArray<T> implements Array<T> {
         return value;
     }
 
+    @Override
     public void clear() {
         head = null;
         size = 0;
