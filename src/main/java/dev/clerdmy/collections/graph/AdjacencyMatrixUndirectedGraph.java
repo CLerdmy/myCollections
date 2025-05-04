@@ -5,9 +5,9 @@ import dev.clerdmy.collections.arrays.DynamicArray;
 
 public class AdjacencyMatrixUndirectedGraph<T> implements Graph<T> {
 
-    //vertexIndexMap <T, Integer>
-    private DynamicArray<T> vertices;
-    private DynamicArray<DynamicArray<Boolean>> adjacencyMatrix;
+    // vertexIndexMap <T, Integer>
+    private final DynamicArray<T> vertices;
+    private final DynamicArray<DynamicArray<Boolean>> adjacencyMatrix;
 
     public AdjacencyMatrixUndirectedGraph() {
         this.vertices = new DynamicArray<>();
@@ -92,6 +92,36 @@ public class AdjacencyMatrixUndirectedGraph<T> implements Graph<T> {
         int j = indexOf(to);
         if (i == -1 || j == -1) return false;
         return adjacencyMatrix.get(i).get(j);
+    }
+
+    @Override
+    public void clear() {
+        vertices.clear();
+        for (DynamicArray<Boolean> row : adjacencyMatrix) {
+            row.clear();
+        }
+        adjacencyMatrix.clear();
+    }
+
+    // Print method
+    public void printMatrix() {
+        int maxVertexLength = 0;
+        for (var vertex : vertices) {
+            maxVertexLength = Math.max(maxVertexLength, vertex.toString().length());
+        }
+        int padding = Math.max(6, maxVertexLength);
+        System.out.printf("%" + padding + "s", "");
+        for (var vertex : vertices) {
+            System.out.printf("%" + padding + "s", vertex);
+        }
+        System.out.println();
+        for (int i = 0; i < vertices.size(); i++) {
+            System.out.printf("%" + padding + "s", vertices.get(i));
+            for (int j = 0; j < vertices.size(); j++) {
+                System.out.printf("%" + padding + "s", adjacencyMatrix.get(i).get(j));
+            }
+            System.out.println();
+        }
     }
 
 }
